@@ -6,3 +6,6 @@ python2 dbbackupscript.py
 
 # Schedule this script to run daily on regular interval using crontab
 0 2 * * * /usr/bin/python dbbackupscript.py
+
+# Secondary cron job to delete old copies changing +5 to how ever many days history you wish to have
+find /backups/mysql -mtime +5 -print | xargs -r rm
