@@ -1,8 +1,8 @@
 # Make the script executable
-chmod +x backup.py
+chmod +x backupscript.py
 
 # Execute the script
-python2 dbbackup.py
+python2 dbbackupscript.py
 
 # Schedule this script to run daily on regular interval using crontab
-0 2 * * * /usr/bin/python dbbackup.py
+0 2 * * * /usr/bin/python dbbackupscript.py
