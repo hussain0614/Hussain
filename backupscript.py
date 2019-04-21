@@ -61,8 +61,12 @@ if multi:
        db = db[:-1]         # deletes extra line
        dumpcmd = "mysqldump -h " + DB_HOST + " -u " + DB_USER + " -p" + DB_USER_PASSWORD + " " + db + " > " + pipes.quote(TODAYBACKUPPATH) + "/" + db + ".sql"
        os.system(dumpcmd)
+     #  compcmd = "tar -zcvf " + pipes.quote(TODAYBACKUPPATH) + "/" + db + ".tar.gz " +  pipes.quote(TODAYBACKUPPATH) + "/" + db + ".sql"
        gzipcmd = "gzip " + pipes.quote(TODAYBACKUPPATH) + "/" + db + ".sql"
+      # os.system(compcmd)
        os.system(gzipcmd)
+       delcmd = "rm " + pipes.quote(TODAYBACKUPPATH) + "/" + db + ".sql"
+       os.system(delcmd)
        p = p + 1
    dbfile.close()
    
@@ -70,9 +74,12 @@ if multi:
    db = DB_NAME
    dumpcmd = "mysqldump -h " + DB_HOST + " -u " + DB_USER + " -p" + DB_USER_PASSWORD + " " + db + " > " + pipes.quote(TODAYBACKUPPATH) + "/" + db + ".sql"
    os.system(dumpcmd)
+  # compcmd = "tar -zcvf " + pipes.quote(TODAYBACKUPPATH) + "/" + db + ".tar.gz " +  pipes.quote(TODAYBACKUPPATH) + "/" + db + ".sql"
    gzipcmd = "gzip " + pipes.quote(TODAYBACKUPPATH) + "/" + db + ".sql"
+ #  os.system(compcmd)
    os.system(gzipcmd)
- 
-print ("")
+  delcmd = "rm " + pipes.quote(TODAYBACKUPPATH) + "/" + db + ".sql"
+  os.system(delcmd)
+
 print ("Backup script completed")
 print ("Your backups have been created in '" + TODAYBACKUPPATH + "' directory")
